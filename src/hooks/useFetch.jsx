@@ -7,6 +7,9 @@ export const useFetch = (url) => {
     const [method, setMethod] = useState(null)
     const [callFetch, setCallFetch] = useState(false)
 
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+
     const httpConfig = (data, method) => {
         if (method === 'POST') {
             setConfig({
@@ -17,16 +20,20 @@ export const useFetch = (url) => {
                 body: JSON.stringify(data)
             })
         }
-
         setMethod(method)
-
     }
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch(url)
-            const json = await res.json()
-            setData(json)
+            setLoading(true)
+            try {
+                const res = await fetch(url)
+                const json = await res.json()
+                setData(json)
+            } catch (err) {
+                setError(`Error while retrieving data`)
+            }
+            setLoading(false)
         }
 
         fetchData()
@@ -46,5 +53,5 @@ export const useFetch = (url) => {
     }, [config, method, url])
 
 
-    return { data, httpConfig }
+    return { data, httpConfig, loading, error }
 }

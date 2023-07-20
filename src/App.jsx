@@ -1,11 +1,19 @@
 import './App.css'
 
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useFetch } from './hooks/useFetch'
+import { useState } from 'react'
+
 import ListRender from './components/ListRender'
 import ConditionalRender from './components/ConditionalRender'
-import { useState, useEffect } from 'react'
 import Title from './components/Title'
 import Form from './components/Form'
-import { useFetch } from './hooks/useFetch'
+import Navbar from './components/Navbar'
+import Home from './pages/Home'
+import About from './pages/About'
+import Product from './pages/Product'
+
+
 const url = 'http://localhost:3000/products'
 
 function App() {
@@ -14,16 +22,12 @@ function App() {
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
 
-  const { data: items, httpConfig } = useFetch(url)
-
+  const { data: items, httpConfig, loading, error } = useFetch(url)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const product = {
-      name,
-      price
-    }
+    const product = { name, price }
 
     httpConfig(product, 'POST')
 
@@ -34,11 +38,28 @@ function App() {
   return (
     <div className='App'>
       <h1>Fundamentos React</h1>
-      <ul>
-        {items && items.map(product => (
-          <li key={product.id}>{product.name} - {product.price}</li>
-        ))}
-      </ul>
+      <BrowserRouter>
+      <Navbar />
+
+        <Routes>
+          <Route exact path='/' element={<Home />}></Route>
+          <Route exact path='/about' element={<About />}></Route>
+          <Route exact path='/products/:id' element={<Product />}></Route>
+        </Routes>
+      </BrowserRouter>
+
+
+
+
+
+      {/* {loading && <p>Carregando dados...</p>}
+      { error && <p>{error}</p>}
+      {!loading &&
+        <ul>
+          {items && items.map(product => (
+            <li key={product.id}>{product.name} - {product.price}</li>
+          ))}
+        </ul>}
       <div className="add-product">
         <form onSubmit={handleSubmit}>
           <label>
@@ -51,8 +72,7 @@ function App() {
           </label>
           <input type="submit" value='Criar produto' />
         </form>
-      </div>
-
+      </div> */}
     </div>
   )
 }
