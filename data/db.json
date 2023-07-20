@@ -1,0 +1,64 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Camiseta 1",
+      "price": 12.9
+    },
+    {
+      "id": 2,
+      "name": "Camiseta 2",
+      "price": 200.9
+    },
+    {
+      "id": 3,
+      "name": "Camiseta 3",
+      "price": 10.9
+    },
+    {
+      "name": "Camiseta 4",
+      "price": "123",
+      "id": 4
+    },
+    {
+      "name": "Camiseta 5",
+      "price": "11",
+      "id": 5
+    },
+    {
+      "name": "Camiseta 6",
+      "price": "8888",
+      "id": 6
+    },
+    {
+      "name": "Camiseta 7",
+      "price": "321",
+      "id": 7
+    },
+    {
+      "name": "Camiseta 4",
+      "price": "1",
+      "id": 8
+    },
+    {
+      "name": "Camiseta 48",
+      "price": "321",
+      "id": 9
+    },
+    {
+      "name": "Camiseta 48",
+      "price": "321",
+      "id": 10
+    },
+    {
+      "name": "Camiseta 41",
+      "price": "11",
+      "id": 11
+    },
+    {
+      "name": "Camiseta 41",
+      "price": "11",
+      "id": 12
+    }
+  ]
+}
