@@ -45,6 +45,8 @@ function App() {
           <Route exact path='/' element={<Home />}></Route>
           <Route exact path='/about' element={<About />}></Route>
           <Route exact path='/products/:id' element={<Product />}></Route>
+          <Route exact path='*' element={<Product />}></Route>
+
         </Routes>
       </BrowserRouter>
 
